@@ -1,10 +1,8 @@
 const app = require("../app");
 const express = require("express");
 const router = express.Router();
+const staticController = require("../controllers/staticController");
 
-router.get("/", (req, res, next) => {
-    console.log('Inside of static router');
-    res.send("Welcome to Shopping List App");
-});
+router.get("/", staticController.index);
 
 module.exports = router;
