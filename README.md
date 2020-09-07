@@ -17,5 +17,5 @@ Test Framework: Jasmine
 
 ### API Endpoints
 
-GET /shopping-list
+GET /shopping-list <br>
 POST /shopping-list
