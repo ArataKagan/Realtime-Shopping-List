@@ -4,8 +4,19 @@
   "description": "Shopping List App",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/server.js",
+    "test": "export NODE_ENV=test&& jasmine"
   },
   "author": "Arata Kagan",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "axios": "^0.20.0",
+    "jasmine": "^3.6.1",
+    "morgan": "^1.10.0"
+  },
+  "dependencies": {
+    "eslint": "^7.8.1",
+    "express": "^4.17.1",
+    "request": "^2.88.2"
+  }
 }
