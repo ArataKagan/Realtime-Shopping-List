@@ -1,12 +1,17 @@
-const app = require("./app");
-const http = require("http");
-const server = http.createServer(app);
+const express = require("express");
+const app = express();
 
-const port = normalizePort(process.env.PORT || "5000");
-app.set("port", port);
 
-server.listen(port);
+// Init middleware
+app.use(express.json({ extended: false }));
 
+app.get('/', (req, res) => res.send('API running'));
+
+const PORT = normalizePort(process.env.PORT || "5000");
+
+app.listen(PORT, () => console.log(`Server started on ${PORT}`));
+
+// Normalize port
 function normalizePort(val) {
     const port = parseInt(val, 10);
     if (isNaN(port)) {
@@ -18,6 +23,3 @@ function normalizePort(val) {
     return false;
 }
 
-server.on("listening", () => {
-    console.log(`server is listening for requests on port ${server.address().port}`);
-});
