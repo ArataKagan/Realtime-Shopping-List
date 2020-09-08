@@ -1,11 +1,14 @@
 const express = require("express");
 const app = express();
-
+require("dotenv").config();
 
 // Init middleware
 app.use(express.json({ extended: false }));
 
 app.get('/', (req, res) => res.send('API running'));
+
+//Define Routes
+app.use('/api/shopping-list', require('./routes/shopping-list'));
 
 const PORT = normalizePort(process.env.PORT || "5000");
 
