@@ -62,4 +62,23 @@ describe("routes : shopping-list", () => {
         });
     });
 
+    describe("POST /shopping-list/:id/delete", () => {
+        it("should delete the item with the associated id", (done) => {
+            Item.findAll()
+                .then((items) => {
+                    const itemCountBeforeDelete = items.length;
+                    expect(itemCountBeforeDelete).toBe(1);
+
+                    request.post(`${base}${this.item.id}/delete`, (err, res, body) => {
+                        Item.findAll()
+                            .then((items) => {
+                                expect(err).toBeNull();
+                                expect(items.length).toBe(itemCountBeforeDelete - 1);
+                                done();
+                            });
+                    });
+                });
+        });
+    });
+
 });
