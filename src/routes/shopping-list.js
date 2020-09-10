@@ -39,4 +39,16 @@ router.post("/", async (req, res) => {
     }
 });
 
+router.post("/:id/delete", async (req, res) => {
+    try {
+        Item.destroy({ where: req.params.id })
+            .catch(err => {
+                console.log(err);
+            })
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Server error");
+    }
+});
+
 module.exports = router;
