@@ -35,9 +35,9 @@ describe("routes : shopping-list", () => {
         });
     });
 
-    describe("POST /shopping-list/create", () => {
+    describe("POST /shopping-list", () => {
         const options = {
-            url: `${base}create`,
+            url: `${base}`,
             form: {
                 item: "orange",
                 quantity: 2
@@ -49,7 +49,7 @@ describe("routes : shopping-list", () => {
                 (err, res, body) => {
                     Item.findOne({ where: { item: "orange" } })
                         .then((item) => {
-                            expect(res.statusCode).toBe(303);
+                            expect(res.statusCode).toBe(200);
                             expect(item.item).toBe("orange");
                             expect(item.quantity).toBe(2)
                             done();

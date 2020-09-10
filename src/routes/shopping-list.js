@@ -16,4 +16,27 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.post("/", async (req, res) => {
+    try {
+        const newItem = {
+            item: req.body.item,
+            quantity: req.body.quantity
+        };
+
+        Item.create(newItem)
+            .then(item => {
+                res.send(item);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occured while creating an item."
+                });
+            });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Server error");
+    }
+});
+
 module.exports = router;
