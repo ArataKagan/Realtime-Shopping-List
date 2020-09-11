@@ -41,10 +41,14 @@ router.post("/", async (req, res) => {
 
 router.post("/:id/delete", async (req, res) => {
     try {
-        Item.destroy({ where: req.params.id })
-            .catch(err => {
-                console.log(err);
-            })
+        // let item = await Item.findByPk(req.params.id);
+        // console.log(item);
+        // await item.destroy();
+        const item = await Item.destroy({
+            where: { id: req.params.id }
+        });
+
+        res.json({ msg: 'Item removed' });
     } catch (error) {
         console.error(error);
         res.status(500).send("Server error");
