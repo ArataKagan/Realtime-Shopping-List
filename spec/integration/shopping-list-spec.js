@@ -81,4 +81,52 @@ describe("routes : shopping-list", () => {
         });
     });
 
+    describe("POST /shopping-list/:id/update", () => {
+        it("should update the item with the associated id", (done) => {
+            // Item.findAll()
+            // .then((item) => {
+            //     const options = {
+            //         url: `${base}${this.item.id}/update`,
+            //         form: {
+            //             item: "grape",
+            //             quantity: 2
+            //         }
+            //     };
+            //     request.post(options, (req, res, body) => {
+            //         Item.findOne({ where: { item: "grape" } })
+            //             .then((item) => {
+            //                 expect(item).not.toBeNull();
+            //                 expect(item.item).toBe("grape");
+            //                 expect(item.quantity).toBe(2);
+            //                 done();
+            //             })
+            //             .catch((err) => {
+            //                 console.log(err);
+            //                 done();
+            //             });
+            //     });
+
+            // });
+            const options = {
+                url: `${base}${this.item.id}/update`,
+                form: {
+                    item: "grape",
+                    quantity: 3
+                }
+            };
+
+            request.post(options,
+                (err, res, body) => {
+                    Item.findOne({
+                        where: { id: this.item.id }
+                    })
+                        .then((item) => {
+                            expect(item.item).not.toBe("apple");
+                            expect(item.item).toBe("grape");
+                            done();
+                        });
+                });
+        });
+    });
+
 });

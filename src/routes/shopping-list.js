@@ -55,4 +55,30 @@ router.post("/:id/delete", async (req, res) => {
     }
 });
 
+router.post("/:id/update", async (req, res) => {
+    try {
+        const updatedItem = {
+            item: req.body.item,
+            quantity: req.body.quantity
+        };
+        console.log(`Updated item: ${updatedItem}`);
+
+
+        Item.findById({
+            where: { id: req.params.id }
+        }).then((item) => {
+            if (item) {
+                item.update(updatedItem);
+            } else {
+                console.log("No matching item found");
+            }
+        });
+
+        res.json({ msg: 'Item updated' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Server error");
+    }
+})
+
 module.exports = router;
