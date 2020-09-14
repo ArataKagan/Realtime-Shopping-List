@@ -83,31 +83,7 @@ describe("routes : shopping-list", () => {
 
     describe("POST /shopping-list/:id/update", () => {
         it("should update the item with the associated id", (done) => {
-            // Item.findAll()
-            // .then((item) => {
-            //     const options = {
-            //         url: `${base}${this.item.id}/update`,
-            //         form: {
-            //             item: "grape",
-            //             quantity: 2
-            //         }
-            //     };
-            //     request.post(options, (req, res, body) => {
-            //         Item.findOne({ where: { item: "grape" } })
-            //             .then((item) => {
-            //                 expect(item).not.toBeNull();
-            //                 expect(item.item).toBe("grape");
-            //                 expect(item.quantity).toBe(2);
-            //                 done();
-            //             })
-            //             .catch((err) => {
-            //                 console.log(err);
-            //                 done();
-            //             });
-            //     });
-
-            // });
-            const options = {
+            const updateOption = {
                 url: `${base}${this.item.id}/update`,
                 form: {
                     item: "grape",
@@ -115,7 +91,7 @@ describe("routes : shopping-list", () => {
                 }
             };
 
-            request.post(options,
+            request.post(updateOption,
                 (err, res, body) => {
                     Item.findOne({
                         where: { id: this.item.id }

@@ -1,9 +1,16 @@
 const express = require("express");
 const app = express();
+var bodyParser = require('body-parser')
 require("dotenv").config();
 
 // Init middleware
 app.use(express.json({ extended: false }));
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 app.get('/', (req, res) => res.send('API running'));
 

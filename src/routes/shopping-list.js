@@ -57,22 +57,33 @@ router.post("/:id/delete", async (req, res) => {
 
 router.post("/:id/update", async (req, res) => {
     try {
-        const updatedItem = {
+
+        const itemId = req.params.id;
+        console.log(`Item id: ${itemId}`);
+
+        // console.log("Item name: %j", req.body);
+
+        const updatedItem = JSON.stringify({
             item: req.body.item,
             quantity: req.body.quantity
-        };
-        console.log(`Updated item: ${updatedItem}`);
-
-
-        Item.findById({
-            where: { id: req.params.id }
-        }).then((item) => {
-            if (item) {
-                item.update(updatedItem);
-            } else {
-                console.log("No matching item found");
-            }
         });
+
+        console.log(`updatedItem: ${updatedItem}`);
+
+        await Item.findByPk(req.params.id)
+            .then((item) => {
+                if (item) {
+                    item.update({
+                        item: req.body.item,
+                        quantity: req.body.quantity
+                    })
+                    item.save();
+                } else {
+                    console.log("No matching item found");
+                }
+            }).catch((err) => {
+                console.log(`Couldn't update ${err}`);
+            });
 
         res.json({ msg: 'Item updated' });
     } catch (error) {
