@@ -1,51 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import ShoppingList from './components/ShoppingList';
 import './App.css';
 
 function App() {
-  const [item, setItem] = useState("");
-  const [quantity, setQuantity] = useState(0);
-
-  const printValues = e => {
-    e.preventDefault();
-    console.log(item, quantity);
-    setItem("");
-    setQuantity(0);
-  }
+  const { register, handleSubmit } = useForm();
+  const onSubmit = data => console.log(data);
 
   return (
     <div className='App'>
       <header className='App-header'>
         <p>Welcome to Shopping List App</p>
 
-        <form onSubmit={printValues}>
-          <label>
-            Item:
-            <input
-              value={item}
-              onChange={event => setItem(event.target.value)}
-              name="item"
-              type="text"
-            />
-          </label>
-          <br />
-          <label>
-            Quantity:
-            <input
-              value={quantity}
-              onChange={event => setQuantity(event.target.value)}
-              name="quantity"
-              type="text"
-            />
-          </label>
-          <br />
-          <button>Submit</button>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input name="item" ref={register} />
+          <select name="quantity" ref={register}>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+          <input type="submit" />
         </form>
-
-        <ul>
-          <ShoppingList />
-          <ShoppingList />
-        </ul>
       </header>
     </div>
   );
