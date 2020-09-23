@@ -1,11 +1,24 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 import ShoppingList from './components/ShoppingList';
 import './App.css';
 
 function App() {
   const { register, handleSubmit } = useForm();
-  const onSubmit = data => console.log(data);
+  const onSubmit = async data => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const res = await axios.post('/api/shopping-list', data, config);
+    if (res) {
+      console.log("Data posted");
+    } else {
+      console.log("Failed");
+    }
+  }
 
   return (
     <div className='App'>
