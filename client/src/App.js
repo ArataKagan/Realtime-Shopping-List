@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import ShoppingList from './components/ShoppingList';
@@ -19,6 +19,12 @@ function App() {
       console.log("Failed");
     }
   }
+
+  useEffect(() => {
+    axios.get('/api/shopping-list').then(result => {
+      result.data.forEach(ele => console.log(ele));
+    }).catch(err => console.log(err));
+  })
 
   return (
     <div className='App'>
