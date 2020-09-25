@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import ShoppingList from './components/ShoppingList';
@@ -6,6 +6,7 @@ import './App.css';
 
 function App() {
   const { register, handleSubmit } = useForm();
+  const [items, updateItem] = useState({});
   const onSubmit = async data => {
     const config = {
       headers: {
@@ -13,8 +14,12 @@ function App() {
       }
     };
     const res = await axios.post('/api/shopping-list', data, config);
+
     if (res) {
+      // Update item
+      updateItem(res);
       console.log("Data posted");
+      console.log(items);
     } else {
       console.log("Failed");
     }
