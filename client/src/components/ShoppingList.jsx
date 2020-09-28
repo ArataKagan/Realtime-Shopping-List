@@ -2,17 +2,26 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function ShoppingList() {
-  // const [items, updateItems] = useState({});
+  const [items, setItems] = useState({});
 
   useEffect(() => {
-    axios.get('/api/shopping-list').then(result => {
-      result.data.forEach(ele => console.log(ele));
-    }).catch(err => console.log(err));
-  })
+    loadItems()
+  }, []);
+
+  async function loadItems() {
+    let response = await fetch("/api/shopping-list");
+    response = await response.json();
+    setItems(response);
+  }
 
   return (
     <div className='ShoppingList'>
       <p>Shopping List</p>
+      {Array.from(items).map(item =>
+        <>
+          <p>{item.item}{item.quantity}</p>
+        </>
+      )}
     </div>
   );
 }
