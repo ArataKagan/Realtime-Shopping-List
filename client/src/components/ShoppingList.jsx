@@ -14,13 +14,19 @@ function ShoppingList() {
     setItems(response);
   }
 
+  function deleteItem(e) {
+    console.log("Inside of deleteItem");
+    console.log(e);
+  }
+
   return (
     <div className='ShoppingList'>
       <p>Shopping List</p>
-      {Array.from(items).map(item =>
-        <>
-          <p>{item.item}{item.quantity}</p>
-        </>
+      {Array.from(items).map((item, index) =>
+        <div key={index}>
+          <p key={index + 1}>{item.item}{item.quantity}</p>
+          <p onClick={() => deleteItem(item)}>Delete</p>
+        </div>
       )}
     </div>
   );
