@@ -16,7 +16,10 @@ function ShoppingList() {
 
   function deleteItem(e) {
     console.log("Inside of deleteItem");
-    console.log(e);
+    console.log(e.id);
+    console.log(items);
+    setItems(Array.from(items).filter(item => item.id != e.id));
+    axios.post('/api/shopping-list/' + e.id + '/delete');
   }
 
   return (
