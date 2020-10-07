@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function ShoppingList() {
   const [items, setItems] = useState({});
+  const [inputText, setInputText] = useState(false);
 
   useEffect(() => {
     loadItems()
@@ -22,12 +23,25 @@ function ShoppingList() {
     axios.post('/api/shopping-list/' + e.id + '/delete');
   }
 
+  function onClickInput(e) {
+    console.log(e);
+    if (inputText) {
+      setInputText(false);
+    } else {
+      setInputText(true);
+    }
+  }
+
   return (
     <div className='ShoppingList'>
       <p>Shopping List</p>
       {Array.from(items).map((item, index) =>
         <div key={index}>
-          <p key={index + 1}>{item.item}{item.quantity}</p>
+          {inputText ?
+            (<input key={index + 1} />) :
+            (<p
+              key={index + 1}
+              onClick={() => onClickInput(item)}>{item.item}{item.quantity}</p>)}
           <p onClick={() => deleteItem(item)}>Delete</p>
         </div>
       )}
