@@ -31,18 +31,21 @@ function ShoppingList() {
       setInputText(true);
     }
   }
+  
 
   return (
+   
     <div className='ShoppingList'>
       <p>Shopping List</p>
       {Array.from(items).map((item, index) =>
-        <div key={index}>
+        <div key={index} >
           {inputText ?
             (<input key={index + 1} />) :
             (<p
               key={index + 1}
-              onClick={() => onClickInput(item)}>{item.item}{item.quantity}</p>)}
-          <p onClick={() => deleteItem(item)}>Delete</p>
+              onClick={() => onClickInput(item)}>{item.item}&nbsp;&nbsp;&nbsp;{item.quantity}</p>)
+          } 
+              <span onClick={() => deleteItem(item)}>Delete</span>
         </div>
       )}
     </div>
