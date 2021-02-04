@@ -9,6 +9,8 @@ Real time shopping list app made with Node/Express, React, MySQL
 
 ### Prerequisites
 
+**Creating Dockerfile is my next step**
+
 * npm
   ```sh
   npm install npm@latest -g
@@ -18,8 +20,6 @@ Real time shopping list app made with Node/Express, React, MySQL
   - (Optional) MySQL Workbench for the GUI interface [https://dev.mysql.com/downloads/workbench/](link)
  
 ### Installation
-
-**Creating Dockerfile is my next step**
 
 1. Create db at MySQL 
 2. Clone the repo
