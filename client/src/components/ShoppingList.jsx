@@ -36,7 +36,6 @@ function ShoppingList() {
   return (
    
     <div className='ShoppingList'>
-      <p>Shopping List</p>
       {Array.from(items).map((item, index) =>
         <div key={index} >
           {inputText ?
