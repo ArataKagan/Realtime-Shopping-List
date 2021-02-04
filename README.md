@@ -2,12 +2,14 @@
 Real time shopping list app made with Node/Express, React, MySQL 
 
 ### Technologies
-Frontend: React
-Backend: Node.js/Express 
-Database: MySQL
-Test Framework: Jasmine 
+- Frontend: React 
+- Backend: Node.js/Express 
+- Database: MySQL
+- Test Framework: Jasmine 
 
 ### Prerequisites
+
+**Creating Dockerfile is my next step**
 
 * npm
   ```sh
@@ -47,18 +49,7 @@ Test Framework: Jasmine
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
-
-
-### Features 
-1. Add shopping item
-2. List added items
-3. Delete items 
-4. Modify names of items
-5. Increase quantity 
-6. Data is updated realtime 
-
-### API Endpoints
-
-GET /shopping-list <br>
-POST /shopping-list
+- Create Dockerfile 
+- Add WebSocket to enable real-time update 
+- Add Edit item feature
+- Design UI
